@@ -1,4 +1,4 @@
-// const bcrypt = require('bcrypt');
+const bcrypt = require('bcrypt');
 const { User } = require('../../../models');
 const Validator = require('fastest-validator');
 const valid = new Validator();
@@ -32,4 +32,23 @@ module.exports = async (req, res) => {
             message: 'email already exists'
         })
     }
+
+    const password = await bcrypt.hash(req.body.password, 10);
+
+    const data = {
+        password,
+        name: req.body.name,
+        email: req.body.email,
+        profesi: req.body.profesi,
+        role: 'student',
+    }
+
+    const createUser = await User.create(data);
+
+    return res.json({
+        status: 'success',
+        data: {
+            id: createUser.id
+        }
+    });
 }
