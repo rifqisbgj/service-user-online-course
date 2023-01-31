@@ -7,5 +7,6 @@ router.post('/register', usersHandler.register);
 router.post('/login', usersHandler.login);
 router.put('/edit/:id', usersHandler.update);
 router.get('/:id', usersHandler.getuser);
+router.get('/', usersHandler.getListUser);
 
 module.exports = router;
