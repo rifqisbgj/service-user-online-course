@@ -4,7 +4,6 @@ const {
 } = require('../../../models');
 
 const Validator = require('fastest-validator');
-const { token } = require('morgan');
 const valid = new Validator();
 
 module.exports = async(req, res) => {
